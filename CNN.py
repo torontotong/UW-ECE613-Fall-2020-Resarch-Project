@@ -35,9 +35,9 @@ def MSE(input,output,label, images):
             color.append('r')
     for k in range(input.shape[0]):
         i = input[k]
-        i = i.reshape(141,110)
+        i = i.reshape(img_x,img_y)
         o = output[k]
-        o = o.reshape(141,110)
+        o = o.reshape(img_x,img_y)
         nor_i = normalize(i, norm='l2').flatten()
         nor_o = normalize(o, norm='l2').flatten()
         res = np.array([[nor_i[i] * nor_o[i], nor_i[i] * nor_i[i], nor_o[i] * nor_o[i]] for i in range(len(nor_i))])
@@ -78,8 +78,10 @@ def load_data(root_path):
         fileStr = file_name.split('.')[0]
         if fileStr == '':
             continue
-        inverse_LowPass = fft_Gaussian_LowPass_filer(dataset_path, file_name)
-        array = inverse_LowPass.reshape(img_x, img_y)
+        #inverse_LowPass = fft_Gaussian_LowPass_filer(dataset_path, file_name)
+        #array = inverse_LowPass.reshape(img_x, img_y)
+        inverse_csf = csf_filter(dataset_path, file_name)
+        array = inverse_csf.reshape(img_x, img_y)
         if array.min() == 0 and array.max() == 0:
             continue
         DataMat.append(array)
@@ -93,8 +95,10 @@ def load_data(root_path):
         fileStr = file_name.split('.')[0]
         if fileStr == '':
             continue
-        inverse_LowPass = fft_Gaussian_LowPass_filer(dataset_path, file_name)
-        array = inverse_LowPass.reshape(img_x, img_y)
+        #inverse_LowPass = fft_Gaussian_LowPass_filer(dataset_path, file_name)
+        #array = inverse_LowPass.reshape(img_x, img_y)
+        inverse_csf = csf_filter(dataset_path, file_name)
+        array = inverse_csf.reshape(img_x, img_y)
         DataMat.append(array)
         label.append("uncomp")
         image_list.append(file_name)
