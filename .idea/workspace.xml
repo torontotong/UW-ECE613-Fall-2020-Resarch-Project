@@ -20,127 +20,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2074aa66-4c1e-4e45-ac85-1242d66bd0da" name="Default Changelist" comment="move source code and data files from 657A project repo. to create base of 613 resarch project">
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_128_comp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_128_comp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_128_comp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_128_uncomp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_128_uncomp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_128_uncomp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_240_comp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_240_comp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_240_comp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_240_uncomp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_240_uncomp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_240_uncomp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_255_uncomp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_255_uncomp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_255_uncomp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_32_comp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_32_comp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_32_comp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_32_uncomp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_32_uncomp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_32_uncomp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_64_comp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_64_comp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_64_comp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_64_uncomp_1_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_64_uncomp_2_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FFTed_data/Pixel2_No4_64_uncomp_3_g_fft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_128_comp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_128_comp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_128_comp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_240_comp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_240_comp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_240_comp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_32_comp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_32_comp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_32_comp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_64_comp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_64_comp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/comp/Pixel2_No4_64_comp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_128_uncomp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_128_uncomp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_128_uncomp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_240_uncomp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_240_uncomp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_240_uncomp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_255_uncomp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_255_uncomp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_255_uncomp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_32_uncomp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_32_uncomp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_32_uncomp_3_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_64_uncomp_1_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_64_uncomp_2_g.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processed_data/uncomp/Pixel2_No4_64_uncomp_3_g.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ece613_r_prj.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_preprocessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_preprocessor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/decision_boundary.png" beforeDir="false" afterPath="$PROJECT_DIR$/decision_boundary.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_064_Comp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_064_Comp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_064_Comp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_064_Comp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_064_Comp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_064_Comp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_064_Comp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_064_Comp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_128_Comp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_128_Comp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_128_Comp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_128_Comp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_128_Comp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_128_Comp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_128_Comp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_128_Comp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_240_Comp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_240_Comp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_240_Comp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_240_Comp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_240_Comp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_240_Comp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/comp/r_Pixel2_No4_240_Comp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/comp/r_Pixel2_No4_240_Comp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_032_Uncomp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_032_Uncomp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_032_Uncomp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_032_Uncomp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_032_Uncomp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_032_Uncomp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_032_Uncomp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_032_Uncomp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_064_Uncomp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_064_Uncomp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_064_Uncomp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_064_Uncomp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_064_Uncomp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_064_Uncomp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_064_Uncomp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_064_Uncomp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_128_Uncomp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_128_Uncomp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_128_Uncomp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_128_Uncomp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_128_Uncomp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_128_Uncomp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_128_Uncomp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_128_Uncomp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_240_Uncomp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_240_Uncomp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_240_Uncomp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_240_Uncomp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_240_Uncomp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_240_Uncomp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_240_Uncomp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_240_Uncomp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Comp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Comp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Comp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Comp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Comp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Comp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Comp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Comp_3_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Uncomp_0_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Uncomp_0_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Uncomp_1_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Uncomp_1_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Uncomp_2_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Uncomp_2_g.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed_data/uncomp/r_Pixel2_No4_255_Uncomp_3_g.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/org_processed_data/uncomp/r_Pixel2_No4_255_Uncomp_3_g.jpeg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JupyterTrust" id="10fa7e65-cb29-486e-bfa6-707ab062cf0b" />
+  <component name="JupyterTrust" id="ad69755d-6673-444f-8f10-d65a1ea2337a" />
   <component name="ProjectId" id="1kntWeHaqe3KqoyQCU9nJpNbIGA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tliu\PycharmProjects\ece613_Fall_2020_Resarch_Project" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/processed_data/uncomp" />
       <recent name="$PROJECT_DIR$/processed_data/comp" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="Python.CNN">
@@ -205,6 +136,10 @@
       <updated>1606348216126</updated>
       <workItem from="1606348217172" duration="1087000" />
       <workItem from="1606423658620" duration="5211000" />
+      <workItem from="1606624524680" duration="113000" />
+      <workItem from="1606624732388" duration="1708000" />
+      <workItem from="1606632911353" duration="901000" />
+      <workItem from="1606696281073" duration="4543000" />
     </task>
     <task id="LOCAL-00001" summary="move source code and data files from 657A project repo. to create base of 613 resarch project">
       <created>1606348344352</created>
@@ -236,49 +171,62 @@
     <option name="LAST_COMMIT_MESSAGE" value="move source code and data files from 657A project repo. to create base of 613 resarch project" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1874" height="308" key="GridCell.Tab.0.bottom" timestamp="1606427654993">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="743" y="279" key="FileChooserDialogImpl" timestamp="1606632539288">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="743" y="279" key="FileChooserDialogImpl/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606632539288" />
+    <state width="1655" height="396" key="GridCell.Tab.0.bottom" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1655" height="396" key="GridCell.Tab.0.bottom/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654993" />
     <state width="1366" height="340" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state width="1874" height="308" key="GridCell.Tab.0.center" timestamp="1606427654993">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1655" height="396" key="GridCell.Tab.0.center" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1655" height="396" key="GridCell.Tab.0.center/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654993" />
     <state width="1366" height="340" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state width="1874" height="308" key="GridCell.Tab.0.left" timestamp="1606427654993">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1655" height="396" key="GridCell.Tab.0.left" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1655" height="396" key="GridCell.Tab.0.left/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654993" />
     <state width="1366" height="340" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state width="1874" height="308" key="GridCell.Tab.0.right" timestamp="1606427654993">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1655" height="396" key="GridCell.Tab.0.right" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1655" height="396" key="GridCell.Tab.0.right/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654993" />
     <state width="1366" height="340" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state width="1874" height="308" key="GridCell.Tab.1.bottom" timestamp="1606427654948">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1655" height="396" key="GridCell.Tab.1.bottom" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1655" height="396" key="GridCell.Tab.1.bottom/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.1.bottom/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654948" />
     <state width="1366" height="340" key="GridCell.Tab.1.bottom/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state width="1874" height="308" key="GridCell.Tab.1.center" timestamp="1606427654948">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1655" height="396" key="GridCell.Tab.1.center" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1655" height="396" key="GridCell.Tab.1.center/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.1.center/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654948" />
     <state width="1366" height="340" key="GridCell.Tab.1.center/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state width="1874" height="308" key="GridCell.Tab.1.left" timestamp="1606427654948">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1655" height="396" key="GridCell.Tab.1.left" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1655" height="396" key="GridCell.Tab.1.left/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.1.left/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654948" />
     <state width="1366" height="340" key="GridCell.Tab.1.left/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state width="1874" height="308" key="GridCell.Tab.1.right" timestamp="1606427654948">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1655" height="396" key="GridCell.Tab.1.right" timestamp="1606713442764">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1655" height="396" key="GridCell.Tab.1.right/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606713442764" />
     <state width="1874" height="308" key="GridCell.Tab.1.right/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606427654948" />
     <state width="1366" height="340" key="GridCell.Tab.1.right/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606400151292" />
-    <state x="485" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1606348574720">
-      <screen x="72" y="27" width="1848" height="1053" />
+    <state x="429" y="159" width="1022" height="737" key="SettingsEditor" timestamp="1606633000650">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="429" y="159" key="SettingsEditor/0.0.1920.1040/3840.0.1920.1040@0.0.1920.1040" timestamp="1606633000650" />
     <state x="485" y="188" width="1022" height="737" key="SettingsEditor/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606348574720" />
     <state x="591" y="289" width="1131" height="674" key="Vcs.Push.Dialog.v2" timestamp="1606348409099">
       <screen x="72" y="27" width="1848" height="1053" />
@@ -286,7 +234,7 @@
     <state x="591" y="289" width="1131" height="674" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1606348409099" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ece613_Fall_2020_Resarch_Project$CNN.coverage" NAME="CNN Coverage Results" MODIFIED="1606427654927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ece613_Fall_2020_Resarch_Project$data_preprocessor.coverage" NAME="data_preprocessor Coverage Results" MODIFIED="1606424967198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ece613_Fall_2020_Resarch_Project$CNN.coverage" NAME="CNN Coverage Results" MODIFIED="1606710045221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
