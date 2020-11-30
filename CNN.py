@@ -70,7 +70,7 @@ def load_data(root_path):
     label = list()
     DataMat = list()
     image_list = list()
-    dataset_path = root_path+ '/comp'
+    dataset_path = root_path+ '/comp_csf'
     file_list = listdir(dataset_path)
     m = len(file_list)
     for i in range(m):
@@ -87,7 +87,7 @@ def load_data(root_path):
         DataMat.append(array)
         label.append("comp")
         image_list.append(file_name)
-    dataset_path = root_path+'/uncomp'
+    dataset_path = root_path+'/uncomp_csf'
     file_list = listdir(dataset_path)
     m = len(file_list)
     for i in range(m):

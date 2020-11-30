@@ -155,48 +155,25 @@ def csf_filter(dataset_path, file_name):
     output_file_path = 'csf_filtered/'+ fileStr + '_csf.png'
     img = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
     img = cv2.resize(img, dsize=(141, 110), interpolation=cv2.INTER_CUBIC)
-    row = 141
-    col = 110
-    feq_0 = np.linspace(-1.0, 1.0, num=row, dtype=float )
-    feq_1 = np.linspace(-1.0, 1.0, num=col, dtype=float)
-    u, v = np.meshgrid(feq_0, feq_1)
-    u = 0.125 * u
-    v = 0.125 * v
-    r = u**2+v**2
-    r = np.sqrt(r)
-    theta_g = np.exp(-(r/f_0)**2) - a * np.exp(-(r/f_1)**2);
-    original = np.fft.fft2(img)
-    center = np.fft.fftshift(original)
-    csf_filtered_Center = center * theta_g
-    csf_filtered = np.fft.ifftshift(csf_filtered_Center)
-    inverse_csf_filtered = np.fft.ifft2(csf_filtered)
-    i = Image.fromarray(np.array(inverse_csf_filtered, np.uint8))
-    i.save(output_file_path)
-    #plt.figure(figsize=(1.4, 1.1), constrained_layout=False)
-    #plt.subplot(133)
-    #plt.imshow(np.abs(inverse_LowPass), "gray")
-    #plt.title("Gaussian Low Pass")
-    #plt.show()
-    return inverse_csf_filtered
-
-    file_path = dataset_path+'/'+file_name
-    fileStr = file_name.split('.')[0]
-    output_file_path = 'FFTed_data/'+ fileStr + '_fft.png'
-    img = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, dsize=(141, 110), interpolation=cv2.INTER_CUBIC)
-    original = np.fft.fft2(img)
-    center = np.fft.fftshift(original)
-    LowPassCenter = center * theta
-    LowPass = np.fft.ifftshift(LowPassCenter)
-    inverse_LowPass = np.fft.ifft2(LowPass)
-    i = Image.fromarray(np.array(inverse_LowPass, np.uint8))
-    i.save(output_file_path)
-    #plt.figure(figsize=(1.4, 1.1), constrained_layout=False)
-    #plt.subplot(133)
-    #plt.imshow(np.abs(inverse_LowPass), "gray")
-    #plt.title("Gaussian Low Pass")
-    #plt.show()
-    return inverse_LowPass
+    return img
+    # row = 141
+    # col = 110
+    # feq_0 = np.linspace(-1.0, 1.0, num=row, dtype=float )
+    # feq_1 = np.linspace(-1.0, 1.0, num=col, dtype=float)
+    # u, v = np.meshgrid(feq_0, feq_1)
+    # u = 0.125 * u
+    # v = 0.125 * v
+    # r = u**2+v**2
+    # r = np.sqrt(r)
+    # theta_g = np.exp(-(r/f_0)**2) - a * np.exp(-(r/f_1)**2);
+    # original = np.fft.fft2(img)
+    # center = np.fft.fftshift(original)
+    # csf_filtered_Center = center * theta_g
+    # csf_filtered = np.fft.ifftshift(csf_filtered_Center)
+    # inverse_csf_filtered = np.fft.ifft2(csf_filtered)
+    # i = Image.fromarray(np.array(inverse_csf_filtered, np.uint8))
+    # i.save(output_file_path)
+    # return inverse_csf_filtered
 
 
 def main():
