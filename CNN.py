@@ -25,6 +25,9 @@ img_x = 141
 img_y = 110
 
 def MSE(input,output,label, images):
+    root_dir = "cnned/"
+    i_img_dir ="input/"
+    o_img_dir = "output/"
     mse_list = list()
     cos_list = list()
     color = list()
@@ -36,8 +39,14 @@ def MSE(input,output,label, images):
     for k in range(input.shape[0]):
         i = input[k]
         i = i.reshape(img_x,img_y)
+        i_img = Image.fromarray(np.array(i, np.uint8))
+        output_file_path = root_dir + i_img_dir + images[k]
+        i_img.save(output_file_path)
         o = output[k]
         o = o.reshape(img_x,img_y)
+        o_img = Image.fromarray(np.array(o, np.uint8))
+        output_file_path = root_dir + o_img_dir + images[k]
+        o_img.save(output_file_path)
         nor_i = normalize(i, norm='l2').flatten()
         nor_o = normalize(o, norm='l2').flatten()
         res = np.array([[nor_i[i] * nor_o[i], nor_i[i] * nor_i[i], nor_o[i] * nor_o[i]] for i in range(len(nor_i))])
@@ -70,7 +79,7 @@ def load_data(root_path):
     label = list()
     DataMat = list()
     image_list = list()
-    dataset_path = root_path+ '/comp_csf'
+    dataset_path = root_path+ '/comp'
     file_list = listdir(dataset_path)
     m = len(file_list)
     for i in range(m):
@@ -87,7 +96,7 @@ def load_data(root_path):
         DataMat.append(array)
         label.append("comp")
         image_list.append(file_name)
-    dataset_path = root_path+'/uncomp_csf'
+    dataset_path = root_path+'/uncomp'
     file_list = listdir(dataset_path)
     m = len(file_list)
     for i in range(m):
@@ -105,7 +114,7 @@ def load_data(root_path):
     DataArray = np.array(DataMat)
     DataArray = DataArray.reshape(DataArray.shape[0], img_x, img_y, 1)
     DataArray = DataArray.astype('float32')
-    DataArray /= 255
+    #DataArray /= 255
     return DataArray,label, image_list
 
 def find_decision_boundray(mse_data_lst, cos_data_lst, label):

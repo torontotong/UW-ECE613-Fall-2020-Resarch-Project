@@ -22,7 +22,7 @@ for i = 1:length(filelst)
     res_img = uint8(CSFfilter(img_data));
     figure(3);
     imshow(res_img,[]);
-    filename = "Processed_data/csfed_" + filelst(i).name;
+    filename = "csf_filtered/csfed_" + filelst(i).name;
     imwrite(res_img, filename);
     
 end
