@@ -1,28 +1,28 @@
 clear all;
 close all;
 
-%filelst = dir(fullfile('Data/LuminanceData', '*.csv'))
-filelst = dir(fullfile('testset', '*.jpeg'))
+filelst = dir(fullfile('LuminanceData', '*.csv'))
+%filelst = dir(fullfile('testset', '*.jpeg'))
 for i = 1:length(filelst)
-    filename = "testset/" + filelst(i).name;
-    img_data = imread(filename);
+    filename = "LuminanceData\" + filelst(i).name;
+    img_data = csvread(filename);
     %img_data = rgb2gray(img_data);
     [row,col] = size(img_data);
     % Full contrast stretch 
-%     hist_equal_fcs_img = zeros(row,col);
-%     min_r = double(min(img_data(:)));
-%     max_r = double(max(img_data(:)));
-%     stretched = double(img_data-min_r) * double(255) / double(max_r-min_r);
-%     hist_equal_fcs_img = round(stretched);
-%     img_data = uint8(hist_equal_fcs_img);
+     hist_equal_fcs_img = zeros(row,col);
+     min_r = double(min(img_data(:)));
+     max_r = double(max(img_data(:)));
+     stretched = double(img_data-min_r) * double(255) / double(max_r-min_r);
+     hist_equal_fcs_img = round(stretched);
+     img_data = uint8(hist_equal_fcs_img);
     %figure(2);
     %imshow(img_data,[]);
-    %filename = "Data/Processed_data/" + filelst(i).name + ".jpeg"
-    %imwrite(img_data, filename);
+    filename = "processed_data/" + filelst(i).name + ".png"
+    imwrite(img_data, filename);
     res_img = uint8(CSFfilter(img_data));
     figure(3);
     imshow(res_img,[]);
-    filename = "csf_filtered/csfed_" + filelst(i).name;
+    filename = "csf_filtered\csfed_" + filelst(i).name + ".png";
     imwrite(res_img, filename);
     
 end
@@ -43,7 +43,7 @@ HH = row; LL = col;
 % viewing distance d1
 % HH = row/2; LL = col/2;
 % viewing distance d2
-%HH = row/4; LL = col/4; 
+HH = row/4; LL = col/4; 
 % viewing distance d3
 %HH = row/8; LL = col/8;
 u = LL*u; v = HH*v;

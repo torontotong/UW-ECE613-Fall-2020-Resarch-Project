@@ -20,22 +20,27 @@ from data_preprocessor import *
 from pandas.core.frame import DataFrame
 
 from utility_functions import get_confusion_matrix, total_accuracy, precision_average, plot_roc
+from skimage.metrics import structural_similarity as ssim
 
 img_x = 141
 img_y = 110
 
 def MSE(input,output,label, images):
-    root_dir = "cnned/"
-    i_img_dir ="input/"
-    o_img_dir = "output/"
+    root_dir = "cnned\\"
+    i_img_dir ="input\\"
+    o_img_dir = "output\\"
     mse_list = list()
     cos_list = list()
     color = list()
     for l in label:
-        if l == 'comp':
+        if l == 'I0':
             color.append('b')
-        if l == 'uncomp':
+        if l == 'I1':
             color.append('r')
+        if l == 'I2':
+            color.append('g')
+        if l == 'I3':
+            color.append('y')
     for k in range(input.shape[0]):
         i = input[k]
         i = i.reshape(img_x,img_y)
@@ -51,21 +56,22 @@ def MSE(input,output,label, images):
         nor_o = normalize(o, norm='l2').flatten()
         res = np.array([[nor_i[i] * nor_o[i], nor_i[i] * nor_i[i], nor_o[i] * nor_o[i]] for i in range(len(nor_i))])
         temp = sum(res[:, 0]) / (np.sqrt(sum(res[:, 1])) * np.sqrt(sum(res[:, 2])))
-        mse = mean_squared_error(i,o)
+        mse = mean_squared_error(i , o)
+        #mse = ssim(np.array(i, np.uint8), np.array(o, np.uint8), win_size= 5, data_range=255)
         mse_list.append(mse)
         cos = 0.5 * temp + 0.5
         cos_list.append(cos)
-    df = {'MSE':mse_list,'CosSim':cos_list,'label':label,'color':color, 'image_mname':images}
+    df = {'MSE':mse_list,'CosSim':cos_list,'label':label,'color':color, 'image_name':images}
     data = DataFrame(df)
     colors = {'comp':'b','uncomp':'r'}
 
 
     fig1 = plt.figure()
     axes1 = fig1.add_subplot(1, 1, 1)
-    scatter1 = axes1.scatter(data['MSE'], data['CosSim'], c=data['color'],s=2)
-    axes1.set_title('Two indicator plot of test data')
-    axes1.set_xlabel('Loss')
-    axes1.set_ylabel('Similarity')
+    scatter1 = axes1.scatter(data['MSE']*10000, (data['CosSim']-0.99)*100, c=data['color'],s=2)
+    axes1.set_title('Two indicator plot of data')
+    axes1.set_xlabel('MSE')
+    axes1.set_ylabel('CosSimilarity')
     #axes1.legend(*scatter1.legend_elements(), loc="best", title="label")
     current_time = time.time()
     plt.savefig(str(current_time)+'result.png')
@@ -79,7 +85,8 @@ def load_data(root_path):
     label = list()
     DataMat = list()
     image_list = list()
-    dataset_path = root_path+ '/comp'
+    #dataset_path = root_path+ '/comp'
+    dataset_path = root_path+'/I0'
     file_list = listdir(dataset_path)
     m = len(file_list)
     for i in range(m):
@@ -94,9 +101,26 @@ def load_data(root_path):
         if array.min() == 0 and array.max() == 0:
             continue
         DataMat.append(array)
-        label.append("comp")
+        label.append("I0")
         image_list.append(file_name)
-    dataset_path = root_path+'/uncomp'
+    #dataset_path = root_path+'/uncomp'
+    # dataset_path = root_path + '/I1'
+    #
+    # file_list = listdir(dataset_path)
+    # m = len(file_list)
+    # for i in range(m):
+    #     file_name = file_list[i]
+    #     fileStr = file_name.split('.')[0]
+    #     if fileStr == '':
+    #         continue
+    #     #inverse_LowPass = fft_Gaussian_LowPass_filer(dataset_path, file_name)
+    #     #array = inverse_LowPass.reshape(img_x, img_y)
+    #     inverse_csf = csf_filter(dataset_path, file_name)
+    #     array = inverse_csf.reshape(img_x, img_y)
+    #     DataMat.append(array)
+    #     label.append("I1")
+    #     image_list.append(file_name)
+    dataset_path = root_path + '/I2'
     file_list = listdir(dataset_path)
     m = len(file_list)
     for i in range(m):
@@ -104,18 +128,31 @@ def load_data(root_path):
         fileStr = file_name.split('.')[0]
         if fileStr == '':
             continue
-        #inverse_LowPass = fft_Gaussian_LowPass_filer(dataset_path, file_name)
-        #array = inverse_LowPass.reshape(img_x, img_y)
         inverse_csf = csf_filter(dataset_path, file_name)
         array = inverse_csf.reshape(img_x, img_y)
         DataMat.append(array)
-        label.append("uncomp")
+        label.append("I2")
         image_list.append(file_name)
+
+    dataset_path = root_path + '/I3'
+    file_list = listdir(dataset_path)
+    m = len(file_list)
+    for i in range(m):
+        file_name = file_list[i]
+        fileStr = file_name.split('.')[0]
+        if fileStr == '':
+            continue
+        inverse_csf = csf_filter(dataset_path, file_name)
+        array = inverse_csf.reshape(img_x, img_y)
+        DataMat.append(array)
+        label.append("I3")
+        image_list.append(file_name)
+
     DataArray = np.array(DataMat)
     DataArray = DataArray.reshape(DataArray.shape[0], img_x, img_y, 1)
     DataArray = DataArray.astype('float32')
-    #DataArray /= 255
-    return DataArray,label, image_list
+    DataArray /= 255
+    return DataArray, label, image_list
 
 def find_decision_boundray(mse_data_lst, cos_data_lst, label):
     df = {'MSE':mse_data_lst,'CosSim':cos_data_lst}
@@ -124,9 +161,11 @@ def find_decision_boundray(mse_data_lst, cos_data_lst, label):
     X = data_array
     label_id = []
     for item in label:
-        if item == 'comp':
+        if item == 'I1':
             label_id.append(1)
-        elif item == 'uncomp':
+        elif item == 'I2':
+            label_id.append(2)
+        elif item == 'I0':
             label_id.append(0)
 
     y = np.array(label_id, np.int)
@@ -238,12 +277,11 @@ def Autoncoder(x_train,label, images):
     return mse_data_lst, cos_data_lst
 
 def main():
-    x_train,label, image_lst= load_data("./processed_data")
+    x_train,label, image_lst= load_data("./csf_filtered")
+    #x_train,label, image_lst= load_data("./processed_data")
     mse_data_lst, cos_data_lst = Autoncoder(x_train,label, image_lst)
-    clf = find_decision_boundray(mse_data_lst, cos_data_lst, label)
-    #x_test,test_label, test_image_lst= load_data("./testset")
-    #test_mse_data_lst, test_cos_data_lst = Autoncoder(x_test,test_label, test_image_lst)
-    run_classifier(clf,  mse_data_lst, cos_data_lst, label)
+    #clf = find_decision_boundray(mse_data_lst, cos_data_lst, label)
+    #run_classifier(clf,  mse_data_lst, cos_data_lst, label)
 
 
 if __name__ == '__main__':
