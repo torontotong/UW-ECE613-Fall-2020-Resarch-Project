@@ -245,7 +245,7 @@ def MSE(input,output,label, images):
         nor_o = normalize(o, norm='l2').flatten()
         res = np.array([[nor_i[i] * nor_o[i], nor_i[i] * nor_i[i], nor_o[i] * nor_o[i]] for i in range(len(nor_i))])
         temp = sum(res[:, 0]) / (np.sqrt(sum(res[:, 1])) * np.sqrt(sum(res[:, 2])))
-        mse = mean_squared_error(i , o)
+        mse = mean_squared_error(i, o)
         #mse = ssim(np.array(i, np.uint8), np.array(o, np.uint8), win_size= 5, data_range=255)
         mse_list.append(mse)
         cos = 0.5 * temp + 0.5
@@ -257,7 +257,7 @@ def MSE(input,output,label, images):
 
     fig1 = plt.figure()
     axes1 = fig1.add_subplot(1, 1, 1)
-    scatter1 = axes1.scatter(data['MSE'], data['CosSim'], c=data['color'],s=2)
+    scatter1 = axes1.scatter(data['MSE'], data['CosSim'], c=data['color'],s=6, marker='x')
     axes1.set_title('Two indicator plot of data')
     axes1.set_xlabel('MSE')
     axes1.set_ylabel('CosSimilarity')
@@ -317,8 +317,8 @@ def load_data(root_path):
 
 def main():
 
-    #x_train,label, image_lst= load_data("csf_filtered/B")
-    x_train,label, image_lst= load_data("processed_data/B")
+    x_train,label, image_lst= load_data("csf_filtered/MS_CSFed/B")
+    #x_train,label, image_lst= load_data("processed_data/MS_CSF_Reference_data/B")
     mse_data_lst, cos_data_lst = Autoncoder(x_train,label, image_lst)
     clf = find_decision_boundray(mse_data_lst, cos_data_lst, label)
     #run_classifier(clf,  mse_data_lst, cos_data_lst, label)

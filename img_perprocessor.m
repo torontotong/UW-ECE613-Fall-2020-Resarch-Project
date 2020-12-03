@@ -19,7 +19,7 @@ for i = 1:length(filelst)
     imshow(img_data,[]);
     filename = "processed_data/" + filelst(i).name + ".png"
     imwrite(img_data, filename);
-    res_img = uint8(CSFfilter(img_data));
+    res_img = uint8(CSF_Mannos_Sakrison_Filter(img_data));
     figure(3);
     imshow(res_img,[]);
     filename = "csf_filtered/csfed_" + filelst(i).name + ".png";
@@ -27,8 +27,8 @@ for i = 1:length(filelst)
     
 end
 
-function res = CSFfilter(IM)
-% function res = CSFfilter(IM) %
+function res = CSF_DoG_Filter(IM)
+% function res = CSF_DoG_Filter(IM) %
 % This function is filter input image IM with a CSF (DoG).
 % IM – input image;
 % res – filtered image.
@@ -48,7 +48,29 @@ HH = row; LL = col;
 %HH = row/8; LL = col/8;
 u = LL*u; v = HH*v;
 r = sqrt(u.^2 + v.^2);
-theta_G = exp(-(r/f0).^2)-a*exp(-(r/f1).^2); % DoG filter
+theta_G = exp(-(r./f0).^2)-a*exp(-(r./f1).^2); % DoG filter
+fim = ifft2(ifftshift(fftshift(fft2(IM)).*theta_G));
+res = fim;
+end
+
+function res = CSF_Mannos_Sakrison_Filter(IM)
+% IM – input image;
+% res – filtered image.
+
+[row,col] = size(IM);
+[u,v] = freqspace([row,col],'meshgrid'); % This line determines the conversion.
+
+HH = row; LL = col;
+% viewing distance d1
+% HH = row/2; LL = col/2;
+% viewing distance d2
+%HH = row/4; LL = col/4; 
+% viewing distance d3
+%HH = row/8; LL = col/8;
+u = LL*u; v = HH*v;
+r = sqrt(u.^2 + v.^2);
+temp = 2.6*(0.0192 + 0.144.*r);
+theta_G = temp.*exp(-(0.144.*r).^(1.1)); % Mannos Sakrison filter
 fim = ifft2(ifftshift(fftshift(fft2(IM)).*theta_G));
 res = fim;
 end
