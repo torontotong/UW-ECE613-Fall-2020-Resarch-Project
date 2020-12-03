@@ -149,7 +149,7 @@ def find_decision_boundray(mse_data_lst, cos_data_lst, label):
     plt.yticks(np.arange(yy.min(), yy.max(), 20*h))
     plt.title('KNN=6')
     #plt.show()
-    plt.savefig('decision_boundary.png', dpi=300)
+    plt.savefig('results/decision_boundary.png', dpi=300)
 
     return clf
 
@@ -222,7 +222,7 @@ def MSE(input,output,label, images):
         elif l == '/I1':
             color.append('r')
         elif l == '/I2':
-            color.append('r')
+            color.append('b')
         elif l == '/I3':
             color.append('b')
         elif l == 'comp':
@@ -243,12 +243,9 @@ def MSE(input,output,label, images):
         o_img.save(output_file_path)
         nor_i = normalize(i, norm='l2').flatten()
         nor_o = normalize(o, norm='l2').flatten()
-        res = np.array([[nor_i[i] * nor_o[i], nor_i[i] * nor_i[i], nor_o[i] * nor_o[i]] for i in range(len(nor_i))])
-        temp = sum(res[:, 0]) / (np.sqrt(sum(res[:, 1])) * np.sqrt(sum(res[:, 2])))
         mse = mean_squared_error(i, o)
-        #mse = ssim(np.array(i, np.uint8), np.array(o, np.uint8), win_size= 5, data_range=255)
         mse_list.append(mse)
-        cos = 0.5 * temp + 0.5
+        cos = cosine_similarity(nor_i.reshape(1,-1), nor_o.reshape(1,-1))
         cos_list.append(cos)
     df = {'MSE':mse_list,'CosSim':cos_list,'label':label,'color':color, 'image_name':images}
     data = DataFrame(df)
@@ -263,7 +260,7 @@ def MSE(input,output,label, images):
     axes1.set_ylabel('CosSimilarity')
     #axes1.legend(*scatter1.legend_elements(), loc="best", title="label")
     current_time = time.time()
-    plt.savefig(str(current_time)+'result.png', dpi=600)
+    plt.savefig('results/' + str(current_time)+'result.png', dpi=600)
     plt.close(0)
     print(data)
     return mse_list, cos_list
@@ -278,8 +275,9 @@ def load_data(root_path):
     else:
         csfed = 1
     #dataset_path = root_path+ '/comp'
-    sub_folders = ["/I0", "/I1", "/I2","/I3"]
-    for sub_folder_i in range(4):
+    #sub_folders = ["/I0", "/I1", "/I2","/I3"]
+    sub_folders = ["/uncomp", "/comp"]
+    for sub_folder_i in range(2):
         dataset_path = root_path + sub_folders[sub_folder_i]
         file_list = listdir(dataset_path)
         m = len(file_list)
@@ -301,7 +299,9 @@ def load_data(root_path):
             if sub_folder_i == 0 :
                 label.append("uncomp")
             elif sub_folder_i == 1:
-                label.append("uncomp")
+                label.append("comp")
+            elif sub_folder_i == 2:
+                label.append("comp")
             else:
                 label.append("comp")
 
@@ -317,10 +317,10 @@ def load_data(root_path):
 
 def main():
 
-    x_train,label, image_lst= load_data("csf_filtered/MS_CSFed/B")
-    #x_train,label, image_lst= load_data("processed_data/MS_CSF_Reference_data/B")
+    x_train,label, image_lst= load_data("csf_filtered/New_DoG_Streched_CSFed/A4/B")
+    #x_train,label, image_lst= load_data("processed_data/MS_STRECH_CSF_REF_data/A4/G")
     mse_data_lst, cos_data_lst = Autoncoder(x_train,label, image_lst)
-    clf = find_decision_boundray(mse_data_lst, cos_data_lst, label)
+    #clf = find_decision_boundray(mse_data_lst, cos_data_lst, label)
     #run_classifier(clf,  mse_data_lst, cos_data_lst, label)
 
 
