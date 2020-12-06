@@ -152,28 +152,32 @@ def csf_filter(dataset_path, file_name):
     a = 0.7622;
     file_path = dataset_path+'/'+file_name
     fileStr = file_name.split('.')[0]
-    output_file_path = 'csf_filtered/'+ fileStr + '_csf.png'
+    #output_file_path = 'csf_filtered/'+ fileStr + '_csf.png'
     img = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
     img = cv2.resize(img, dsize=(141, 110), interpolation=cv2.INTER_CUBIC)
-    #return img
-    row = 141
-    col = 110
-    feq_0 = np.linspace(-1.0, 1.0, num=row, dtype=float )
-    feq_1 = np.linspace(-1.0, 1.0, num=col, dtype=float)
-    u, v = np.meshgrid(feq_0, feq_1)
-    #u = 0.125 * u
-    #v = 0.125 * v
-    r = u**2+v**2
-    r = np.sqrt(r)
-    theta_g = np.exp(-(r/f_0)**2) - a * np.exp(-(r/f_1)**2);
-    original = np.fft.fft2(img)
-    center = np.fft.fftshift(original)
-    csf_filtered_Center = center * theta_g
-    csf_filtered = np.fft.ifftshift(csf_filtered_Center)
-    inverse_csf_filtered = np.fft.ifft2(csf_filtered)
-    i = Image.fromarray(np.array(inverse_csf_filtered, np.uint8))
-    i.save(output_file_path)
-    return inverse_csf_filtered
+    return img
+    # row = 141
+    # col = 110
+    # row = img.shape[1]
+    # col = img.shape[0]
+    # feq_0 = np.linspace(-1.0, 1.0, num=row, dtype=float )
+    # feq_1 = np.linspace(-1.0, 1.0, num=col, dtype=float)
+    # u, v = np.meshgrid(feq_0, feq_1)
+    # u = 0.125 * u
+    # v = 0.125 * v
+    # r = u**2+v**2
+    # r = np.sqrt(r)
+    # theta_g = np.exp(-(r/f_0)**2) - a * np.exp(-(r/f_1)**2);
+    # original = np.fft.fft2(img)
+    # center = np.fft.fftshift(original)
+    # csf_filtered_Center = center * theta_g
+    # csf_filtered = np.fft.ifftshift(csf_filtered_Center)
+    # inverse_csf_filtered = np.fft.ifft2(csf_filtered)
+    # #i = Image.fromarray(np.array(inverse_csf_filtered, np.uint8))
+    # #i.save(output_file_path)
+    # #csfed_img = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
+    # #inverse_csf_filtered = cv2.resize(csfed_img, dsize=(110, 141), interpolation=cv2.INTER_CUBIC)
+    # return inverse_csf_filtered
 
 
 def main():
