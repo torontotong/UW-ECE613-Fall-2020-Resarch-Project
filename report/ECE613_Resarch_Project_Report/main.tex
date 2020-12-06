@@ -3,7 +3,7 @@
 %          IEEEbib.bst - IEEE bibliography style file.
 % --------------------------------------------------------------------------
 \documentclass{article}
-\usepackage{spconf,amsmath,graphicx}
+\usepackage{spconf,amsmath,graphicx,lipsum,multicol}
 
 % Example definitions.
 % --------------------
@@ -53,7 +53,7 @@ To address these issues an unique solution has been developed by author's engine
     \includegraphics[width=0.125\textwidth]{images/csfed_G_480_I0_PsdLum.png}\hfill    
     \includegraphics[width=0.125\textwidth]{images/A1_G_300_I0_PsdLum.csv.png}\hfill
     \includegraphics[width=0.125\textwidth]{images/A1_G_300_I2_PsdLum.csv.png}\hfill
-    \caption{Right side shows MURA,Middle image shows Burn-in(Aged by an ageing test pattern), Right side shows MURA or Burn-in was eliminated by  Compensation }
+    \caption{Left side shows MURA,Middle image shows Burn-in(Aged by an ageing test pattern), Right side shows MURA or Burn-in was eliminated by  Compensation }
     \label{fig1}
 \end{figure}
 To evaluate the quality of compensation for both AMOLED panel's non-uniformity and ageing issues, author developed a rapid AMOLED display panel quality assessment system to evaluate the AMOLED panel compensation quality, which is checking luminance uniformity performance across AMOLED panel by analysing the compensated panel's gray-scale image via a CNN based auto-encoder. However without using any image pre-processing only takes original AMOLED panel gray-scale images as input, in the case of the luminance difference on AMOLED panel was small the system couldn't make clear decision of whether compensation was good or bad. 
@@ -96,12 +96,96 @@ Original Image is given as $I(x,y)$, fast Fourier transformed image is $\Phi(u,v
 \subsection{Apply inverse Fast Fourier Transform}
 Apply inverse Fast Fourier Transform filter to CSF filtered image by using ifft2() and ifftshift() functions.
 
-\section{Comparison of Different CSF models}
-\subsection{DoG model}
-\subsection{Daly model}
-\subsection{Movshon model}
-\subsection{Mannos And Sakrison model}
-\section{Performance Evaluation}
+\section{Apply Different Contrast Sensitivity Function models}
+There are many different CSF models were published by different researchers. In this research from simplicity of implementation prospective, author picked four different models for comparison, at end chose one model which has the best performance.\\
+Equations of these models are listed as below.
+\subsection{Daly model, 1993\cite{UseCSFinFusedIMage}}
+\begin{equation}
+    \centering
+    \label{eq:daly}
+     \Theta(r) = (\frac{0.008}{r^3}+1)^{-0.2}1.42re^{-0.3u\sqrt{1+0.06e^{0.3r}}}
+\end{equation}
+\subsection{DoG model, Watsonand Ahumada 2005\cite{Standard-Model-Contrast}}
+\begin{equation}
+    \centering
+    \label{eq:DoG}
+     \Theta(r) = e^{-(r/r_0)^2}-ae^{-(r/r_1)^2}
+\end{equation}
+Where, $r_0 = 15.3870$, $r_1 = 1.3456$, $a = 0.7622$.
+\subsection{Movshon model, Movshon and Kiorpes\cite{Movshon-Kiorpes}}
+\begin{equation}
+    \centering
+    \label{eq:mannos}
+     \Theta(r) = ar^be^{-cr}
+\end{equation}
+Where a = 75, b =0.2, and c = 0.8. 
+\subsection{Mannos And Sakrison model,\cite{Mannos-Sakrison}}
+\begin{equation}
+    \centering
+    \label{eq:mannos}
+     \Theta(r) = 2.6(0.0192+0.144r)e^{-(0.144r)^{1.1}}
+\end{equation}
+
+\section{Experiments}
+The purpose of the experiment is the verify how much the contrast sensitivity function will help for classify the quality of compensation for AMOLED display panels. Author used two sets of image data, one set is known has good compensation quality those images were labeled as "comp". Another set of data is known hasn't good compensation quality or not have compensated at all, these images were labeled as "uncomp". There are two goals for the experiment.\\
+First goal is at end of process to check whether the system can classify these two sets of data based on those two quality indicators - Cosine similarity and MSE. Based on the contrast sensitivity function theory, Author expected the experiment result of using CSF filtered image will better than the result of without using CSF filtered image.\\
+Second goal is in case of using Contrast sensitivity function, iterate through different CSF models, depends on the result to choose the best performed CSF model.
+\subsection{Experiment Procedure}
+Experiments were follow below procedure. It is seperated to two phases.\\
+First, pre-process images with contrast sensitivity function filter,and iterated with different Contrast sensitivity function model in each iteration. This part is done with MATLAB code.
+\begin{itemize}
+    \item put pre-classified images into "comp" and "uncomp" two folders, 
+    \item Load AMOLED display panel image which acquired by separated optical measurement system
+    \item Apply a Contrast stretch Transformation for the input image in matlab
+    \item Apply Contrast Sensitivity Function to the image in matlab
+    \item Output the CSF filtered image stored as new image file in matlab
+\end{itemize}
+The second, this part loads CSF filtered images and original images run through auto-encoder and perform evaluation calculation, this part is done by python code.
+\begin{itemize}
+    \item Load image from "comp" and "uncomp" folders, create data matrices with flattened input image data as samples. Label each sample as "comp" or "uncomp" based on which folder the image was loaded from.
+    \item run auto-encoder with image matrices as input, save the output
+    \item run evaluation process use auto-encoder input and output image matrices as parameter, get Cosine similarity and mean Square error, plot Cosine similarity and MSE, use cosine similarity as Y axis, and MSE as X axis. In the plot, the data point corresponds to "comp" image shown in blue color, in contrast, "uncomp" image data points shown in red color.   
+\end{itemize}
+
+\section{Experiment Results and Discussion}
+\subsection{Non-CSF filtered vs CSF filtered}
+\subsubsection{Difference Impacts In Pre-process phase}
+Author chose DoG model to represent the case of using Contrast sensitivity Function to compare the case of without using any contrast sensitivity function to pre-process the image.  
+The figure \ref{fig4} shows the contrast between two original after compensation AMOLED display panel quality images and their CSF filtered images. The original images were taken at two luminance level on one smart phone AMOELD panel. the luminnance level are $160 cd/m^2$ and $300 cd/m^2$. As we can see it is almost invisible of any luminance non-uniformity error in two original images. However, from their CSF filtered images it is easy to detect the luminance non-uniformity defect in highlighted areas. This is one indicator shows that the contrast sensitivity function can help to improve image quality judgement by removing the subjective effect of human eyes. The luminance non-uniformity error was emphasised by contrast sensitivity function filtering.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.1\textwidth]{images/A1_G_160_I3_PsdLum.csv.png}\hfill    
+    \includegraphics[width=0.1\textwidth]{images/DoG_csfed_A1_G_160_I3_PsdLum.csv.png}\hfill    
+    \includegraphics[width=0.1\textwidth]{images/A1_G_300_I3_PsdLum.csv.png}\hfill
+    \includegraphics[width=0.1\textwidth]{images/DoG_csfed_A1_G_300_I3_PsdLum.csv.png}
+    \caption{ From left to right shown two sets of data in comparison of No CSF filtered and CSF(DoG) filtered. From left No.1 and 3 are no CSF filtered, No. 2 and 4 are DoG CSF filtered. }
+    \label{fig3}
+\end{figure}
+
+\subsubsection{Difference Impacts In Final Result}
+After verifying the improvement of applying contrast sensitivity function in pre-processing phase, let's take a look at how much of this improvement impacted the final result. Figure \ref{fig5} shows the result of after run through auto-encoder, how quality indicators of each image was distributed in comparison of with and without contrast sensitivity function filtering.  On the left side of figure\ref{fig5}, it shows that without applying contrast sensitivity function, the result of compensated AMOLED display panel image were distributed in a wider area. The blue data point which indicates to compensated panel images, and red data point which indicates to badly or no compensated panel images, these two type of images were clearly separated in the all area. In contrast, on the right side of figure \ref{fig5}, it shows that with contrast sensitivity function applied, the result of compensated AMOLED display panel image were concentrated in smaller area, and the blue color data points and read color data points were clearly separated, ans stay in their own region. This shows strong evidence of the contrast sensitivity function helps the system to classify the AMOLED display panel compensation quality, which lead to higher accuracy result of compensation quality assessment system.   
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.25\textwidth]{images/1440P_NoCSFed_0r_123b_result.png}\Vhfill    
+    \includegraphics[width=0.25\textwidth]{images/1440P_CSFed_0r_123b_result.png}\Vhfill
+    \caption{Left, No CSF filtered. Right, CSF(DoG) filtered  }
+    \label{fig4}
+\end{figure}
+
+\subsection{Comparison Between Different CSF models}
+Above section discussed the experiments result which archived first goal of this project, which is prove the contrast sensitivity function does improve the the system assessment quality. For the second goal of this project author ran a big number of iteration of the experiment to find out which model has the best performance in terms of improve assessment quality of the compensation of AMOLED display panel. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.22\textwidth]{images/Barton_CSFed_G_01r_23b_result.png}\hfill    
+    \includegraphics[width=0.22\textwidth]{images/Daly_CSFed_G_01r_23b_result.png}\hfill
+    \\[\smallskipamount]    
+    \includegraphics[width=0.22\textwidth]{images/NewDoG_Streched_CSFed_A1_G_01r_23b_result.png}\hfill
+    \includegraphics[width=0.22\textwidth]{images/MS_STRECH_CSFED_G_A1_01r_23b_result.png}
+    \caption{ F }
+    \label{fig5}
+\end{figure}
+
 \section{Discussion}
 \section{Conclusion}
 
