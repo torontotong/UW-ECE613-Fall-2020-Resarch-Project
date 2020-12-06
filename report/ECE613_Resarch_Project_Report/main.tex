@@ -1,0 +1,163 @@
+% Template for ICIP-2019 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,graphicx}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+% Title.
+% ------
+\title{A Method To Improve Accuracy of AMOLED Display Panel Quality Assessment By Using Contrast Sensitivity Function}
+%
+% Single address.
+% ---------------
+\name{Tong Liu\\
+UW ID:20809932}
+\address{University of Waterloo\\
+        Department of Electrical and Computer Engineering\\
+        200 University Ave W, Waterloo, Ontario, N2L 3G1, Canada}
+%
+% For example:
+% ------------
+%\address{School\\
+%	Department\\
+%	Address}
+%
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+%
+\begin{document}
+
+\maketitle{}
+%
+\begin{abstract}
+%
+In this research project, author used the knowledge of Contrast Sensitivity Function which gained from previous review project, implemented Contrast sensitivity function code in both MATLAB and python code, applied to a python based AMOLED Display Panel quality assessment system. Author have done a numbers of tests and experiments by comparing different models of Contrast sensitivity function in a AMOLED display panel quality assessment system, finally selected one model based on the performance figures. By Using this CSF model to compare without using contrast sensitivity function, it clearly show there is big improvement of accuracy of the system to classify good and bad quality of AMOLED display Panels .   
+\end{abstract}
+
+\begin{keywords}
+Contrast Sensitivity Function, System, Image Quality Assessment, Display Luminance Uniformity, AMOLED, AMOLED Display Aging, Burn-in, MURA
+\end{keywords}
+%
+
+\section{Introduction}
+The AMOLED (Active Matrix Organic Light Emitting Diode) display panel has been used by High-end smart phone maker such as, Apple, Samsung, Google and so on, in their latest products. The Market also shows a strong need of AMOLED display Panel in high end TV and Car displays industry. However, to adapt good quality AMOLED display panel into product, there are two issues which are impact AMOLED display performance. These issues all related to luminance performance of the AMOLED panel. First issue is luminance non-uniformity which is caused while AMOLED panel is manufactured in plant, as know as MURA - A Japanese term for "irregularity". The second is AMOLED display panel ageing issue, this is a long term performance issue, it is caused by OLED material ageing, which is the luminance performance drop at some heavily used area of panel, it lead to become another luminance non-uniformity issue, as know as image burn-in on AMOLED display. 
+To address these issues an unique solution has been developed by author's engineering team, it's called non-uniformity and ageing compensation. See figure \ref{fig1}. \\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.125\textwidth]{images/csfed_G_480_I0_PsdLum.png}\hfill    
+    \includegraphics[width=0.125\textwidth]{images/A1_G_300_I0_PsdLum.csv.png}\hfill
+    \includegraphics[width=0.125\textwidth]{images/A1_G_300_I2_PsdLum.csv.png}\hfill
+    \caption{Right side shows MURA,Middle image shows Burn-in(Aged by an ageing test pattern), Right side shows MURA or Burn-in was eliminated by  Compensation }
+    \label{fig1}
+\end{figure}
+To evaluate the quality of compensation for both AMOLED panel's non-uniformity and ageing issues, author developed a rapid AMOLED display panel quality assessment system to evaluate the AMOLED panel compensation quality, which is checking luminance uniformity performance across AMOLED panel by analysing the compensated panel's gray-scale image via a CNN based auto-encoder. However without using any image pre-processing only takes original AMOLED panel gray-scale images as input, in the case of the luminance difference on AMOLED panel was small the system couldn't make clear decision of whether compensation was good or bad. 
+In this research project author tried to address this issue by adopting contrast sensitivity function into the system as part of AMOLED panel image pre-processing to improve the overall performance of the system. \\
+
+\section{AMOLED display Quality Assessment System And Its Improvement }
+The figure \ref{fig_sys_diagram} shows the AMOLED display panel quality assessment system architecture. 
+\subsection{Pre-processing}
+The pre-processing block originally only does image data cleansing and resizing, then output to auto-encoder as its input. In this research project author added contrast sensitivity function filter as additional part of image pre-processing. According to the previous review project study, the contrast sensitivity function can help to remove human visual system's subjective effect, then Contrast Sensitivity Function filtered image can emphasis the small luminance error across AMOLED panel, therefore increase the AMOLED panel quality assessment accuracy. 
+\subsection{Auto-encoder}
+In order to compare the AMOLED display panel test image and the reference image to judge the panel quality. The test image is the original image may contains not fully eliminated MURA or Burn-in image error. Author uses the a CNN (Convolutional Neural Network) based auto-encoder to create the reference image of panel by using original panel test image as input,  the auto-encoder eliminates test image's error which caused by not fully compensated MURA or burn-in.  
+\subsection{Evaluation process}
+This part is evaluation process. This process includes two steps. First step is post auto-encoder processor, it computes two performance indicator factors Cosine similarity and Mean square error. The second step use those two performance indicators as input ,runs a KNN classifier to classify the panel's quality is good or bad.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.52\textwidth]{images/system_diagram.png}\vfill
+    \caption{AMOLED Panel Quality Assessment System Diagram}
+    \label{fig_sys_diagram}
+\end{figure}
+\section{Apply Contrast Sensitivity Function Into System}
+Based on the study in previous review project, author design and implemented process to apply contrast sensitivity function into the AMOLED display panel quality assessment system. Below discuss the details of process as high level requirement for actual code development.
+\subsection{Coordinate Transformation}
+Based on input image $I(x,y)$, where (x,y) is pixel location, then after FFT get spatial frequency domain image $\Theta(u,v)$, where, $u,v$ are spatial frequency on x, and y axis. before apply Contrast Sensitivity Function, we need to transform coordinate from x,y axis to polar coordinate by using following formula.
+\begin{equation}
+    \centering
+    \label{eq:coor}
+     r = \sqrt{u^2+v^2}
+\end{equation}
+
+\subsection{Apply FFT to image}
+Apply Fast Fourier Transform filter to cleaned and resized original image by using fft2() and fftshift() functions.
+
+\subsection{Apply Contrast Sensitivity Function}
+Original Image is given as $I(x,y)$, fast Fourier transformed image is $\Phi(u,v)$, the contrast sensitivity function is $\Theta(r)$, then by multiplying two components $\Phi$ and $\Theta$, we get contrast sensitivity function filtered image $\hat{\Phi}(u,v)$.
+\begin{equation}
+    \centering
+    \label{eq:applyCSF}
+    \hat{\Phi}(u,v) = \Phi(u,v)\Theta(r) 
+\end{equation}
+\subsection{Apply inverse Fast Fourier Transform}
+Apply inverse Fast Fourier Transform filter to CSF filtered image by using ifft2() and ifftshift() functions.
+
+\section{Comparison of Different CSF models}
+\subsection{DoG model}
+\subsection{Daly model}
+\subsection{Movshon model}
+\subsection{Mannos And Sakrison model}
+\section{Performance Evaluation}
+\section{Discussion}
+\section{Conclusion}
+
+\clearpage
+\begin{thebibliography}{8}
+\bibitem{csf-humaneye} 
+Peter G. J. Barten. 
+\textit{Contrast sensitivity of the human eye and its effects on image quality}. 
+SPIE-The Intemational Society for Optical Engineering, Bellingham, Washington, 1999.
+
+\bibitem{formulaOfCSF} 
+Peter G.J. Barten.
+\textit{Formula for the contrast sensitivity of the human eye}.
+SPIE-The Intemational Society for Optical Engineering Vol.5294, San Jose, California, 2004.
+
+\bibitem{PhyModelOfCSF} 
+Peter G.J. Barten.
+\textit{Physical Model For The Contrast Sensitivity of The Human Eye}.
+SPIE Vol. 1666 Human Vision, Visual Processing, and Digital Display III 1992.
+
+\bibitem{Mannos-Sakrison}
+James L. Mannos and Daivd J. Sakrison.
+\textit{The Effects of a Visual Fidelity Criterion on the Encoding of Images}.
+IEEE TRANSACTIONS ON INFORMATION THEORY, VOL. IT-20, No.4, 1974.
+
+\bibitem{Ahumada}
+A. J. Ahumada, Jr.
+\textit{Simplified Vision Models for Image Quality Assessment}
+SID Digest pp. 397-400, NASA Ames Research Center, Moffett Field CA. 1996.
+
+\bibitem{Standard-Model-Contrast}
+Andrew B. Watson and A. J. Ahumada, Jr.
+\textit{A Standard Model For Foveal Detection of Spatial Contrast}
+Journal of Vision (2005)5, 717-740 , NASA Ames Research Center, Moffett Field CA. 2005.
+
+\bibitem{UseCSFinFusedIMage}
+Zheng Liu and Wei Wu.
+\textit{The Use of the Contrast Sensitivity Function in the Perceptual Quality Assessment of Fused Image}
+International Journal of Image and Data Fusion, Vol.2 No.1 P93-103, 2011
+
+\bibitem{Movshon-Kiorpes}
+J. Anthony Movshon and Lynne Kiorpes.
+\textit{Analysis of the development of spatial contrast sensitivity in monkey and human infants}
+Journal Optical. Soc. Ameraca Vol.5, No.12, New York University, 6 Washington Place, New York, 1988
+
+\bibitem{OnCS} 
+Garrett M. Johnson and Mark D. Fairchild.
+\textit{On Contrast Sensitivity in an Image Difference Model}
+Rochester Institute of Technology, Rochester New York
+
+\bibitem{Radiant}
+White Paper
+\textit{Methods for Measuring Display Defects and Mura as Correlated to Human Visual Percuption}
+Radiant Vision Systems, Redmond, WA.
+
+\end{thebibliography}
+
+
+\end{document}
