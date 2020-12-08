@@ -112,13 +112,13 @@ Equations of these models are listed as below.
      \Theta(r) = e^{-(r/r_0)^2}-ae^{-(r/r_1)^2}
 \end{equation}
 Where, $r_0 = 15.3870$, $r_1 = 1.3456$, $a = 0.7622$.
-\subsection{Movshon model, Movshon and Kiorpes\cite{Movshon-Kiorpes}}
+\subsection{Barton model}
 \begin{equation}
     \centering
     \label{eq:mannos}
-     \Theta(r) = ar^be^{-cr}
+     \Theta(r) = re^{-0.25r}
 \end{equation}
-Where a = 75, b =0.2, and c = 0.8. 
+Where a = 75, b =0.2, and c = 0.8.
 \subsection{Mannos And Sakrison model,\cite{Mannos-Sakrison}}
 \begin{equation}
     \centering
@@ -134,7 +134,7 @@ Second goal is in case of using Contrast sensitivity function, iterate through d
 Experiments were follow below procedure. It is seperated to two phases.\\
 First, pre-process images with contrast sensitivity function filter,and iterated with different Contrast sensitivity function model in each iteration. This part is done with MATLAB code.
 \begin{itemize}
-    \item put pre-classified images into "comp" and "uncomp" two folders, 
+    \item put pre-classified images into "comp" and "uncomp" two folders,
     \item Load AMOLED display panel image which acquired by separated optical measurement system
     \item Apply a Contrast stretch Transformation for the input image in matlab
     \item Apply Contrast Sensitivity Function to the image in matlab
@@ -144,19 +144,19 @@ The second, this part loads CSF filtered images and original images run through 
 \begin{itemize}
     \item Load image from "comp" and "uncomp" folders, create data matrices with flattened input image data as samples. Label each sample as "comp" or "uncomp" based on which folder the image was loaded from.
     \item run auto-encoder with image matrices as input, save the output
-    \item run evaluation process use auto-encoder input and output image matrices as parameter, get Cosine similarity and mean Square error, plot Cosine similarity and MSE, use cosine similarity as Y axis, and MSE as X axis. In the plot, the data point corresponds to "comp" image shown in blue color, in contrast, "uncomp" image data points shown in red color.   
+    \item run evaluation process use auto-encoder input and output image matrices as parameter, get Cosine similarity and mean Square error, plot Cosine similarity and MSE, use cosine similarity as Y axis, and MSE as X axis. In the plot, the data point corresponds to "comp" image shown in blue color, in contrast, "uncomp" image data points shown in red color.
 \end{itemize}
 
 \section{Experiment Results and Discussion}
 \subsection{Non-CSF filtered vs CSF filtered}
 \subsubsection{Difference Impacts In Pre-process phase}
-Author chose DoG model to represent the case of using Contrast sensitivity Function to compare the case of without using any contrast sensitivity function to pre-process the image.  
+Author chose DoG model to represent the case of using Contrast sensitivity Function to compare the case of without using any contrast sensitivity function to pre-process the image.
 The figure \ref{fig4} shows the contrast between two original after compensation AMOLED display panel quality images and their CSF filtered images. The original images were taken at two luminance level on one smart phone AMOELD panel. the luminnance level are $160 cd/m^2$ and $300 cd/m^2$. As we can see it is almost invisible of any luminance non-uniformity error in two original images. However, from their CSF filtered images it is easy to detect the luminance non-uniformity defect in highlighted areas. This is one indicator shows that the contrast sensitivity function can help to improve image quality judgement by removing the subjective effect of human eyes. The luminance non-uniformity error was emphasised by contrast sensitivity function filtering.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.1\textwidth]{images/A1_G_160_I3_PsdLum.csv.png}\hfill    
-    \includegraphics[width=0.1\textwidth]{images/DoG_csfed_A1_G_160_I3_PsdLum.csv.png}\hfill    
+    \includegraphics[width=0.1\textwidth]{images/A1_G_160_I3_PsdLum.csv.png}\hfill
+    \includegraphics[width=0.1\textwidth]{images/DoG_csfed_A1_G_160_I3_PsdLum.csv.png}\hfill
     \includegraphics[width=0.1\textwidth]{images/A1_G_300_I3_PsdLum.csv.png}\hfill
     \includegraphics[width=0.1\textwidth]{images/DoG_csfed_A1_G_300_I3_PsdLum.csv.png}
     \caption{ From left to right shown two sets of data in comparison of No CSF filtered and CSF(DoG) filtered. From left No.1 and 3 are no CSF filtered, No. 2 and 4 are DoG CSF filtered. }
@@ -164,29 +164,32 @@ The figure \ref{fig4} shows the contrast between two original after compensation
 \end{figure}
 
 \subsubsection{Difference Impacts In Final Result}
-After verifying the improvement of applying contrast sensitivity function in pre-processing phase, let's take a look at how much of this improvement impacted the final result. Figure \ref{fig5} shows the result of after run through auto-encoder, how quality indicators of each image was distributed in comparison of with and without contrast sensitivity function filtering.  On the left side of figure\ref{fig5}, it shows that without applying contrast sensitivity function, the result of compensated AMOLED display panel image were distributed in a wider area. The blue data point which indicates to compensated panel images, and red data point which indicates to badly or no compensated panel images, these two type of images were clearly separated in the all area. In contrast, on the right side of figure \ref{fig5}, it shows that with contrast sensitivity function applied, the result of compensated AMOLED display panel image were concentrated in smaller area, and the blue color data points and read color data points were clearly separated, ans stay in their own region. This shows strong evidence of the contrast sensitivity function helps the system to classify the AMOLED display panel compensation quality, which lead to higher accuracy result of compensation quality assessment system.   
+After verifying the improvement of applying contrast sensitivity function in pre-processing phase, let's take a look at how much of this improvement impacted the final result. Figure \ref{fig4} shows the result of after run through auto-encoder, how quality indicators of each image was distributed in comparison of with and without contrast sensitivity function filtering.  On the left side of figure\ref{fig5}, it shows that without applying contrast sensitivity function, the result of compensated AMOLED display panel image were distributed in a wider area. The blue data point which indicates to compensated panel images, and red data point which indicates to badly or no compensated panel images, these two type of images were clearly separated in the all area. In contrast, on the right side of figure \ref{fig5}, it shows that with contrast sensitivity function applied, the result of compensated AMOLED display panel image were concentrated in smaller area, and the blue color data points and read color data points were clearly separated, ans stay in their own region. This shows strong evidence of the contrast sensitivity function helps the system to classify the AMOLED display panel compensation quality, which lead to higher accuracy result of compensation quality assessment system.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.25\textwidth]{images/1440P_NoCSFed_0r_123b_result.png}\Vhfill    
+    \includegraphics[width=0.25\textwidth]{images/1440P_NoCSFed_0r_123b_result.png}\Vhfill
     \includegraphics[width=0.25\textwidth]{images/1440P_CSFed_0r_123b_result.png}\Vhfill
     \caption{Left, No CSF filtered. Right, CSF(DoG) filtered  }
     \label{fig4}
 \end{figure}
 
 \subsection{Comparison Between Different CSF models}
-Above section discussed the experiments result which archived first goal of this project, which is prove the contrast sensitivity function does improve the the system assessment quality. For the second goal of this project author ran a big number of iteration of the experiment to find out which model has the best performance in terms of improve assessment quality of the compensation of AMOLED display panel. 
+Above section discussed the experiments result which archived first goal of this project, which is prove the contrast sensitivity function does improve the the system assessment quality. For the second goal of this project author ran a big number of iteration of the experiment to find out which model has the best performance in terms of improve assessment quality of the compensation of AMOLED display panel. Figure \ref{fig5} and Figure \ref{fig6} show plots of final result of different contrast sensitivity function model. These results were based on same group of sample images of AMOLED display panels, those images were grouped to be "comp" and "uncomp" two datasets. "comp" images are well compensated panel images, and blue dots indicate "comp" images. In contrast "uncomp" images are bad compensated or non-compensated images, and red dots indicate "uncomp" images.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.22\textwidth]{images/Barton_CSFed_G_01r_23b_result.png}\hfill    
-    \includegraphics[width=0.22\textwidth]{images/Daly_CSFed_G_01r_23b_result.png}\hfill
-    \\[\smallskipamount]    
-    \includegraphics[width=0.22\textwidth]{images/NewDoG_Streched_CSFed_A1_G_01r_23b_result.png}\hfill
-    \includegraphics[width=0.22\textwidth]{images/MS_STRECH_CSFED_G_A1_01r_23b_result.png}
-    \caption{ F }
+    \includegraphics[width=0.24\textwidth]{images/BartonCSFed_D_1_4_G_01r_23b_result.png}\hfill
+    \includegraphics[width=0.24\textwidth]{images/DalyCSFed_D_1_8_G_01r_23b_result.png}\hfill
     \label{fig5}
+    \caption{ Left, Barton Model, Right Daly Model }
+    \\[\smallskipamount]
+    \includegraphics[width=0.24\textwidth]{images/NewDoG_Streched_CSFed_A1_G_01r_23b_result.png}\hfill
+    \includegraphics[width=0.24\textwidth]{images/MS_STRECH_CSFED_G_A1_01r_23b_result.png}\hfill
+    \caption{ Left, DoG Model,  Right, Mannos&Sakrison Model }
+    \label{fig6}
 \end{figure}
+According to these plots, it is easy to find that the Mannos and Sakrison model shows the clearest cluster of result which indicate the well compensated group of panel images and bad or not compensated group of panel images.
 
-\section{Discussion}
+
 \section{Conclusion}
 
 \clearpage
