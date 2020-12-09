@@ -101,12 +101,12 @@ def find_decision_boundray(mse_data_lst, cos_data_lst, label):
 
 
     y = np.array(label_id, np.int)
-    h = .00001
+    h = .005
     # we create an instance of SVM and fit out data. We do not scale our
     # data since we want to plot the support vectors
-    C = 0.0001  # SVM regularization parameter
+    C = 0.0005  # SVM regularization parameter
     # create a mesh to plot in
-    x_min, x_max = X[:, 0].min() - 30*h, X[:, 0].max() + 30*h
+    x_min, x_max = X[:, 0].min() - 10*h, X[:, 0].max() + 10*h
     y_min, y_max = X[:, 1].min() - 10*h, X[:, 1].max() + 20*h
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
                          np.arange(y_min, y_max, h))
@@ -122,7 +122,7 @@ def find_decision_boundray(mse_data_lst, cos_data_lst, label):
     #clf = KNeighborsClassifier(n_neighbors=5).fit(X,y)
     #clf = GaussianNB().fit(X,y)
     #clf = AdaBoostClassifier(n_estimators=100, random_state=0).fit(X,y)
-    clf = KNeighborsClassifier(n_neighbors=6).fit(X,y)
+    clf = KNeighborsClassifier(n_neighbors=5).fit(X,y)
 
     # Plot the decision boundary. For that, we will assign a color to each
     # point in the mesh [x_min, x_max]x[y_min, y_max].
@@ -317,10 +317,10 @@ def load_data(root_path):
 
 def main():
 
-    x_train,label, image_lst= load_data("csf_filtered/New_DoG_Streched_CSFed/A4/B")
+    x_train,label, image_lst= load_data("csf_filtered/Daly_CSFed/G/")
     #x_train,label, image_lst= load_data("processed_data/MS_STRECH_CSF_REF_data/A4/G")
     mse_data_lst, cos_data_lst = Autoncoder(x_train,label, image_lst)
-    #clf = find_decision_boundray(mse_data_lst, cos_data_lst, label)
+    clf = find_decision_boundray(mse_data_lst, cos_data_lst, label)
     #run_classifier(clf,  mse_data_lst, cos_data_lst, label)
 
 

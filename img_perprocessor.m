@@ -20,18 +20,19 @@ for i = 1:length(filelst)
     filename = "processed_data/" + filelst(i).name + ".png"
     imwrite(img_data, filename);
     %res_img = uint8(CSF_Mannos_Sakrison_Filter(img_data));
-    res_img = uint8(CSF_DoG_Filter(img_data));
+    %res_img = uint8(CSF_DoG_Filter(img_data));
     %res_img = uint8(CSF_Daly_Filter(img_data));
-    %res_img = CSF_Mannos_Sakrison_Filter(img_data);
-    hist_equal_res_img = zeros(row,col);
-    min_r = double(min(res_img(:)));
-    max_r = double(max(res_img(:)));
-    stretched = double(res_img-min_r).*double(255)./double(max_r-min_r);
-    hist_equal_res_img = round(stretched);
-    res_img = uint8(hist_equal_res_img);
+    %res_img = uint8(CSF_Barton_Filter(img_data));
+    res_img = uint8(CSF_Movshon_Filter(img_data));
+     hist_equal_res_img = zeros(row,col);
+     min_r = double(min(res_img(:)));
+     max_r = double(max(res_img(:)));
+     stretched = double(res_img-min_r).*double(255)./double(max_r-min_r);
+     hist_equal_res_img = round(stretched);
+     res_img = uint8(hist_equal_res_img);
     figure(3);
     imshow(res_img,[]);
-    filename = "csf_filtered/MS_csfed_" + filelst(i).name + ".png";
+    filename = "csf_filtered/Movshon_CSFed/Movshon_csfed_" + filelst(i).name + ".png";
     imwrite(res_img, filename);
     
 end
@@ -92,11 +93,11 @@ function res = CSF_Movshon_Filter(IM)
 
 HH = row; LL = col;
 % viewing distance d1
-% HH = row/2; LL = col/2;
+%HH = row/2; LL = col/2;
 % viewing distance d2
 %HH = row/4; LL = col/4; 
 % viewing distance d3
-%HH = row/8; LL = col/8;
+HH = row/8; LL = col/8;
 u = LL*u; v = HH*v;
 r = sqrt(u.^2 + v.^2);
 theta_G = 75.*(r.^0.2).*exp(-0.8.*r); % Movshon filter
@@ -110,13 +111,7 @@ function res = CSF_Barton_Filter(IM)
 % res – filtered image.
 [row,col] = size(IM);
 [u,v] = freqspace([row,col],'meshgrid'); % This line determines the conversion.
-HH = row; LL = col;
-% viewing distance d1
-% HH = row/2; LL = col/2;
-% viewing distance d2
-%HH = row/4; LL = col/4; 
-% viewing distance d3
-%HH = row/8; LL = col/8;
+HH = row/4; LL =  col/4;
 u = LL*u; v = HH*v;
 r = sqrt(u.^2 + v.^2);
 theta_G = r.*exp(-0.25.*r); % Barton filter
@@ -135,7 +130,7 @@ HH = row; LL = col;
 % viewing distance d2
 %HH = row/4; LL = col/4; 
 % viewing distance d3
-%HH = row/8; LL = col/8;
+HH = row/8; LL = col/8;
 u = LL*u; v = HH*v;
 r = sqrt(u.^2 + v.^2);
 first_part = (0.008./(r.^3) + 1).^(-0.2);
